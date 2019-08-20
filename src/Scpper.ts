@@ -2,6 +2,7 @@ import * as apisauce from 'apisauce'
 
 import { Api, Options } from './types'
 import { createApi, assert, fillRequest } from './util'
+import { WikidotUser, SiteMember, WikidotPage } from './structures'
 
 export class Scpper {
   private _api: apisauce.ApisauceInstance
@@ -38,6 +39,7 @@ export class Scpper {
   /**
    * Retrieve a user by id
    * @param id user id
+   * @returns {WikidotUser}
    */
   public async getUser(id: string, options: Options.getUser = {}) {
     const response = await this.api.get<Api.UserItem>('user', {
@@ -47,7 +49,22 @@ export class Scpper {
 
     if (!response.ok) throw new Error(response.problem)
 
-    return response
+    return new WikidotUser(this, response.data);
+  }
+
+  /**
+   * Retrieve a user by id
+   * @param id user id
+   */
+  public async getSiteMember(id: string, options: Options.getUser = {}) {
+    const response = await this.api.get<Api.UserItem>('user', {
+      id,
+      ...options
+    })
+
+    if (!response.ok) throw new Error(response.problem)
+
+    return new SiteMember(this, ...options.site, response.data);
   }
 
   /**
@@ -72,6 +89,7 @@ export class Scpper {
    * the name matching name
    * @param search search
    * @param options user search options
+   * @returns {Map<string, WikidotUser>}
    */
   public async findUsers(search: string, options: Options.findUser = {}) {
     const response = await this.api.get<Api.searchUser>('find-users', {
@@ -80,8 +98,32 @@ export class Scpper {
     })
 
     if (!response.ok) throw new Error(response.problem)
+    let result = new Map()
+    for (let user of response.data.users) {
+      result.set(user.id,new WikidotUser(this,user));
+    }
+    return result
+  }
 
-    return response
+  /**
+   * Retrieves up to limit users from the with part of
+   * the name matching name
+   * @param search search
+   * @param options user search options
+   * @returns {Map<string, SiteMember>}
+   */
+  public async findSiteMembers(search: string, options: Options.findUser = {}) {
+    const response = await this.api.get<Api.searchUser>('find-users', {
+      name: search,
+      ...options
+    })
+
+    if (!response.ok) throw new Error(response.problem)
+    let result = new Map()
+    for (let user of response.data.users) {
+      result.set(user.id,new SiteMember(this, ...options.site, user));
+    }
+    return result
   }
 
   /**

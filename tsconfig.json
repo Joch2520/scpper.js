@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "declaration": true,
+    "allowJs": true,
     "outDir": "dist/"
   },
   "exclude": ["./test"]
