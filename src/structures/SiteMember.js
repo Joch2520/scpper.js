@@ -33,6 +33,12 @@ class SiteMember extends WikidotUser {
     this.votes = null;
 
     /**
+     * The total revisions this member has committed on the site
+     * @type {number}
+     */
+    this.revisions = null;
+
+    /**
      * The total pages this member has created on the site
      * @type {number}
      */
@@ -59,6 +65,7 @@ class SiteMember extends WikidotUser {
     this.joinedTimestamp = siteActivity.member.date;
     this.lastActive = siteActivity.lastActive.date;
     this.votes = siteActivity.votes;
+    this.revisions = siteActivity.revisions;
     this.pages = siteActivity.pages;
     this.highestRating = siteActivity.highestRating;
     this.totalRating = siteActivity.totalRating;
@@ -66,6 +73,30 @@ class SiteMember extends WikidotUser {
 
   get joinedAt() {
     return new Date(this.joinedTimestamp)
+  }
+
+  get lastActive() {
+    return new Date(this.lastActive)
+  }
+
+  get id() {
+    return this.id
+  }
+
+  get votes() {
+    return this.votes
+  }
+
+  get pageCount() {
+    return this.pages
+  }
+
+  get highestRating() {
+    return this.highestRating
+  }
+
+  get totalRating() {
+    return this.totalRating
   }
 };
 

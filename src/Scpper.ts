@@ -33,7 +33,7 @@ export class Scpper {
 
     if (!response.ok) throw new Error(response.problem)
 
-    return response
+    return new WikidotPage(this, response.data);
   }
 
   /**
