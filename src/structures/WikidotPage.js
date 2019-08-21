@@ -1,11 +1,11 @@
 const util_1 = require("./util");
 const SiteMember = require("./SiteMember");
-const DataResolver = require("./../DataResolver");
+const DataResolver = require("./../DataResolver").DataResolver;
 
 class WikidotPage {
   constructor(client, data) {
 
-    this._DataResolver = new DataResolver.SCPDataResolver(client)
+    this._DataResolver = new DataResolver(client)
     if (data) this.setup(data);
   }
 
