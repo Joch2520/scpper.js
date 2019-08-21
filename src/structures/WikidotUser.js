@@ -1,4 +1,3 @@
-const util_1 = require("./util");
 
 /**
  * Represents a Wikidot user stored on ScpperDB.
@@ -66,4 +65,4 @@ class WikidotUser {
   };
 };
 
-module.exports.WikidotUser = WikidotUser;
+module.exports = WikidotUser;

@@ -1,4 +1,3 @@
-const util_1 = require("./util");
 const WikidotUser = require('./WikidotUser');
 
 /**
@@ -79,25 +78,9 @@ class SiteMember extends WikidotUser {
     return new Date(this.lastActive)
   }
 
-  get id() {
-    return this.id
-  }
-
-  get votes() {
-    return this.votes
-  }
-
   get pageCount() {
     return this.pages
   }
-
-  get highestRating() {
-    return this.highestRating
-  }
-
-  get totalRating() {
-    return this.totalRating
-  }
 };
 
-module.exports.SiteMember = SiteMember;
+module.exports = SiteMember;

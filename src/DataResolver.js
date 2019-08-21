@@ -1,8 +1,10 @@
 const branches = ['en', 'ru', 'ko', 'ja', 'fr', 'es', 'th', 'pl', 'de', 'cn', 'it', 'int'];
 const branchUrls = {
+    "http://scp-wiki.net": "en",
     "http://www.scp-wiki.net": "en",
     "http://scp-wiki.wikidot.com": "en",
     "http://scpfoundation.ru": "ru",
+    "http://www.scpfoundation.ru": "ru",
     "http://scp-ru.wikidot.com": "ru",
     "http://ko.scp-wiki.net": "ko",
     "http://scpko.wikidot.com": "ko",
@@ -103,4 +105,4 @@ class SCPDataResolver {
   }
 }
 
-module.exports.DataResolver = SCPDataResolver;
+module.exports = SCPDataResolver;

@@ -121,7 +121,7 @@ export class Scpper {
     if (!response.ok) throw new Error(response.problem)
     let result = new Map()
     for (let user of response.data.users) {
-      result.set(user.id,new SiteMember(this, ...options.site, user));
+      result.set(user.id, new SiteMember(this, ...options.site, user));
     }
     return result
   }
@@ -141,7 +141,11 @@ export class Scpper {
 
     if (!response.ok) throw new Error(response.problem)
 
-    return response
+    let result = new Map()
+    for (let page of response.data.pages) {
+      result.set(page.id,new WikidotPage(this,page));
+    }
+    return result
   }
 
   /**
