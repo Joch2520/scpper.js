@@ -25,11 +25,12 @@ export class Scpper {
    * Retrieve a page by id
    * @param id page id
    */
-  public async getPage(id: string, options: Options.getPage = {}) {
-    const response = await this.api.get<Api.PageItem>('page', {
+  public getPage(id: string, options: Options.getPage = {}) {
+    var response
+    this.api.get<Api.PageItem>('page', {
       id,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
 
@@ -41,11 +42,12 @@ export class Scpper {
    * @param id user id
    * @returns {WikidotUser}
    */
-  public async getUser(id: string, options: Options.getUser = {}) {
-    const response = await this.api.get<Api.UserItem>('user', {
+  public getUser(id: string, options: Options.getUser = {}) {
+    var response
+    this.api.get<Api.UserItem>('user', {
       id,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
 
@@ -56,11 +58,12 @@ export class Scpper {
    * Retrieve a user by id
    * @param id user id
    */
-  public async getSiteMember(id: string, options: Options.getUser = {}) {
-    const response = await this.api.get<Api.UserItem>('user', {
+  public getSiteMember(id: string, options: Options.getUser = {}) {
+    var response
+    this.api.get<Api.UserItem>('user', {
       id,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
 
@@ -73,11 +76,12 @@ export class Scpper {
    * @param search search
    * @param options page search options
    */
-  public async findPages(search: string, options: Options.findPage = {}) {
-    const response = await this.api.get<Api.searchPage>('find-pages', {
+  public findPages(search: string, options: Options.findPage = {}) {
+    var response
+    this.api.get<Api.searchPage>('find-pages', {
       title: search,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
 
@@ -91,11 +95,12 @@ export class Scpper {
    * @param options user search options
    * @returns {Map<string, WikidotUser>}
    */
-  public async findUsers(search: string, options: Options.findUser = {}) {
-    const response = await this.api.get<Api.searchUser>('find-users', {
+  public findUsers(search: string, options: Options.findUser = {}) {
+    var response
+    this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
     let result = new Map()
@@ -112,11 +117,12 @@ export class Scpper {
    * @param options user search options
    * @returns {Map<string, SiteMember>}
    */
-  public async findSiteMembers(search: string, options: Options.findUser = {}) {
-    const response = await this.api.get<Api.searchUser>('find-users', {
+  public findSiteMembers(search: string, options: Options.findUser = {}) {
+    var response
+    this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
     let result = new Map()
@@ -131,13 +137,14 @@ export class Scpper {
    * @param tag list of tags, each prefixed with "+" or "-", separated by commas
    * @param options tag search options
    */
-  public async findTag(tag: string | string[], options: Options.findTag = {}) {
+  public findTag(tag: string | string[], options: Options.findTag = {}) {
     const search = Array.isArray(tag) ? tag.join(',') : tag
 
-    const response = await this.api.get<Api.searchTag>('tags', {
+    var response
+    this.api.get<Api.searchTag>('tags', {
       tags: search,
       ...options
-    })
+    }).then(res => response=res)
 
     if (!response.ok) throw new Error(response.problem)
 
