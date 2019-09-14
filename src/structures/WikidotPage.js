@@ -11,19 +11,19 @@ class WikidotPage {
 
     /**
      * The branch tag/site inital of the page
-     * @type {string}
+     * @type {String}
      */
     this.site = null
 
     /**
      * The unix name (url) of the page
-     * @type {string}
+     * @type {String}
      */
     this.name = null;
 
     /**
      * The title of the page
-     * @type {string}
+     * @type {String}
      */
     this.title = null;
 
@@ -35,67 +35,67 @@ class WikidotPage {
 
     /**
      * Whether the page is an original or a tranlated work
-     * @type {string}
+     * @type {String}
      */
     this.status = null;
 
     /**
-     * The kind the page it is, only "SCP" or "unknown"
-     * @type {string}
+     * The kind the page it is, "SCP", "tale", "unknown", etc.
+     * @type {String}
      */
     this.kind = null;
 
     /**
      * When the page was created
-     * @type {Date}
+     * @type {String}
      */
     this.created = null;
 
     /**
      * The author(s) of the page
-     * @type {Map<number, SiteMember}
+     * @type {Map<Number, SiteMember}
      */
     this.authors = new Map();
 
     /**
      * The translator(s) of the page
-     * @type {Map<number, SiteMember}
+     * @type {Map<Number, SiteMember}
      */
     this.translators = new Map();
 
     /**
      * The overall rating of the page
-     * @type {number}
+     * @type {Number}
      */
     this.rating = null;
 
     /**
      * The clean rating of the page
-     * @type {number}
+     * @type {Number}
      */
     this.cleanRating = null;
 
     /**
      * The contributor rating of the page
-     * @type {number}
+     * @type {Number}
      */
     this.contributorRating = null;
 
     /**
      * The adjusted rating of the page
-     * @type {number}
+     * @type {Number}
      */
     this.adjustedRating = null;
 
     /**
      * The Wilson score of the page
-     * @type {number}
+     * @type {Number}
      */
     this.wilson = null;
 
     /**
      * The rank of the page in the site
-     * @type {number}
+     * @type {Number}
      */
     this.rank = null;
 
@@ -105,7 +105,7 @@ class WikidotPage {
   setup(data) {
     /**
      * Represents the id of the page
-     * @type {number}
+     * @type {Number}
      */
     this.id = data.id;
 
@@ -115,20 +115,19 @@ class WikidotPage {
     this.created = data.creationDate.date;
 
     for (const prop of ['name', 'title', 'altTitle', 'status', 'kind', 'rank', 'rating', 'cleanRating', 'contributorRating', 'adjustedRating']) {
-      if (typeof data[prop] !== 'undefined') this[prop] = data[prop];
+      if (typeof data[prop] !== ('undefined' || undefined || 'Nan' || NaN || 'null' || null )) this[prop] = data[prop];
     }
 
     this.wilson = data.wilsonScore;
 
 
     for (user of data.authors) {
-      var siteMember = this._client.getUser(user.id);
-      var siteMemberObj = new SiteMember(this._client, this.site, siteMember);
+      var siteMember = this._client.getSiteMember(user.id, {site: this.site});
 
       if (user.role === "Author") {
-        this.authors.set(user.id,siteMemberObj)
+        this.authors.set(user.id,siteMember)
       } else if (user.role === "Translator") {
-        this.translators.set(user.id,siteMemberObj)
+        this.translators.set(user.id,siteMember)
       }
     }
   }

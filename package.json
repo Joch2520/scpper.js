@@ -1,10 +1,10 @@
 {
-  "name": "scpper.js",
+  "name": "scpper-alt.js",
   "version": "0.0.0-development",
-  "description": "NodeJS API wrapper for ScpperDB API",
+  "description": "NodeJS API wrapper for ScpperDB API, based on HelloEdit's scpper.js",
   "author": {
-    "name": "HelloEdit",
-    "url": "https://github.com/HelloEdit/"
+    "name": "Joch2520",
+    "url": "https://github.com/Joch2520/"
   },
   "scripts": {
     "lint": "prettier ./**/*.{js,ts,json,md} -l",

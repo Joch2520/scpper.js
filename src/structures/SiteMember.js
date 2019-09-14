@@ -9,54 +9,54 @@ class SiteMember extends WikidotUser {
     super(client, data);
     /**
      * The site this member is in
-     * @type {string}
+     * @type {String}
      */
-    this.site = site;
+    this.site = this._DataResolver.SiteResolver(site);;
 
     /**
      * The timestamp this member joined the site at
-     * @type {string}
+     * @type {String}
      */
     this.joinedTimestamp = null;
 
     /**
      * The timestamp this member was last active on the site at
-     * @type {string}
+     * @type {String}
      */
     this.lastActive = null;
 
     /**
      * The total votes this member has voted on the site
-     * @type {number}
+     * @type {Number}
      */
     this.votes = null;
 
     /**
      * The total revisions this member has committed on the site
-     * @type {number}
+     * @type {Number}
      */
     this.revisions = null;
 
     /**
      * The total pages this member has created on the site
-     * @type {number}
+     * @type {Number}
      */
     this.pages = null;
 
     /**
      * The highest rating this member has gotten for a single page on the site
-     * @type {number}
+     * @type {Number}
      */
     this.highestRating = null;
 
     /**
      * The total rating this member has gotten for all owned pages on the site
-     * @type {number}
+     * @type {Number}
      */
     this.totalRating = null;
 
 
-    if (this.memberOf(site)) this.setup(data);
+    if (this.memberOf(this.site)) this.setup(data);
   }
 
   setup(data) {
@@ -74,7 +74,7 @@ class SiteMember extends WikidotUser {
     return new Date(this.joinedTimestamp)
   }
 
-  get lastActive() {
+  get lastActiveAt() {
     return new Date(this.lastActive)
   }
 

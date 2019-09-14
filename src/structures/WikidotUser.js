@@ -1,3 +1,4 @@
+const DataResolver = require("./../DataResolver");
 
 /**
  * Represents a Wikidot user stored on ScpperDB.
@@ -11,13 +12,14 @@ class WikidotUser {
      * @readonly
      */
     this.client = client;
+    this._DataResolver = new DataResolver(client);
 
     if (data) this.setup(data);
   }
 
   setup(data) {
     /**
-     * The wikidot ID of the user, also used by ScpperDB as identifier
+     * The wikidot ID number of the user, also used by ScpperDB as identifier
      * @type {number}
      */
     this.id = data.id;
@@ -57,11 +59,12 @@ class WikidotUser {
 
   /**
    * Checks if the user has joined the specified site/branch or not
-   * @param {string} site The site to check if the user is in
+   * @param {SiteResolvable} site The site to check if the user is in
    * @returns {boolean}
    */
   get memberOf(site) {
-    return Boolean(this.branches.includes(site));
+    var resolvedSite = this._DataResolver.SiteResolver(site);
+    return Boolean(this.branches.includes(resolvedSite));
   };
 };
 
