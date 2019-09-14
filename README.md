@@ -41,7 +41,7 @@ You can call different API methods of Scpper class like this:
 api.getPage('1956234')
 api.getUser('966960')
 ```
-[Click here to see the full API documentation.](./doc/Api.md)
+[Click here to see the full API documentation.](doc/Api.md)
 
 ---
 
@@ -64,6 +64,4 @@ SCP Foundation and all related works were created by SCP creative community and 
 
 ### Thanks
 
-Thanks to FiftyNine for the API and for his infinite patience during our exchanges !
-
-Thanks also to all my friends of the french Foundation branch, and for the unconditional love of Boule De Neige <3
+Thanks to [HelloEdit](https://github.com/HelloEdit), who has created the [Scpper.js](https://github.com/HelloEdit/scpper.js) that I've modified based off of.

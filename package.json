@@ -1,5 +1,5 @@
 {
-  "name": "scpper-alt.js",
+  "name": "scpper2.js",
   "version": "0.0.0-development",
   "description": "NodeJS API wrapper for ScpperDB API, based on HelloEdit's scpper.js",
   "author": {
@@ -37,8 +37,12 @@
   "dependencies": {
     "apisauce": "^0.16.0"
   },
-  "repository": {
+  "upstreamRepository": {
     "type": "git",
     "url": "https://github.com/HelloEdit/scpper.js.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Joch2520/scpper.js.git"
   }
 }
