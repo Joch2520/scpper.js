@@ -26,15 +26,16 @@ export class Scpper {
    * @param id page id
    */
   public getPage(id: string, options: Options.getPage = {}) {
-    var response
-    this.api.get<Api.PageItem>('page', {
+    var res = this.api.get<Api.PageItem>('page', {
       id,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
+      if (!response.ok) throw new Error(response.problem)
 
-    return new WikidotPage(this, response.data);
+      return new WikidotPage(this, response.data);
+    })
+    return res;
   }
 
   /**
@@ -43,15 +44,16 @@ export class Scpper {
    * @returns {WikidotUser}
    */
   public getUser(id: string, options: Options.getUser = {}) {
-    var response
-    this.api.get<Api.UserItem>('user', {
+    var res = this.api.get<Api.UserItem>('user', {
       id,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
+      if (!response.ok) throw new Error(response.problem)
 
-    return new WikidotUser(this, response.data);
+      return new WikidotUser(this, response.data);
+    })
+    return res;
   }
 
   /**
@@ -60,15 +62,16 @@ export class Scpper {
    * @returns {SiteMember}
    */
   public getSiteMember(id: string, options: Options.getUser = {}) {
-    var response
-    this.api.get<Api.UserItem>('user', {
+    var res = this.api.get<Api.UserItem>('user', {
       id,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
+      if (!response.ok) throw new Error(response.problem)
 
-    return new SiteMember(this, ...options.site, response.data);
+      return new SiteMember(this, ...options.site, response.data);
+    })
+    return res;
   }
 
   /**
@@ -78,15 +81,16 @@ export class Scpper {
    * @param options page search options
    */
   public findPages(search: string, options: Options.findPage = {}) {
-    var response
-    this.api.get<Api.searchPage>('find-pages', {
+    var res = this.api.get<Api.searchPage>('find-pages', {
       title: search,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
+      if (!response.ok) throw new Error(response.problem)
 
-    return response
+      return response
+    })
+    return res;
   }
 
   /**
@@ -97,18 +101,19 @@ export class Scpper {
    * @returns {Map<string, WikidotUser>}
    */
   public findUsers(search: string, options: Options.findUser = {}) {
-    var response
-    this.api.get<Api.searchUser>('find-users', {
+    var res = this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
-    let result = new Map()
-    for (let user of response.data.users) {
-      result.set(user.id,new WikidotUser(this,user));
-    }
-    return result
+      if (!response.ok) throw new Error(response.problem)
+      let result = new Map()
+      for (let user of response.data.users) {
+        result.set(user.id,new WikidotUser(this,user));
+      }
+      return result
+    })
+    return res;
   }
 
   /**
@@ -119,18 +124,19 @@ export class Scpper {
    * @returns {Map<string, SiteMember>}
    */
   public findSiteMembers(search: string, options: Options.findUser = {}) {
-    var response
-    this.api.get<Api.searchUser>('find-users', {
+    var res = this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
-    let result = new Map()
-    for (let user of response.data.users) {
-      result.set(user.id, new SiteMember(this, ...options.site, user));
-    }
-    return result
+      if (!response.ok) throw new Error(response.problem)
+      let result = new Map()
+      for (let user of response.data.users) {
+        result.set(user.id, new SiteMember(this, ...options.site, user));
+      }
+      return result
+    })
+    return res;
   }
 
   /**
@@ -141,19 +147,20 @@ export class Scpper {
   public findTag(tag: string | string[], options: Options.findTag = {}) {
     const search = Array.isArray(tag) ? tag.join(',') : tag
 
-    var response
-    this.api.get<Api.searchTag>('tags', {
+    var res = this.api.get<Api.searchTag>('tags', {
       tags: search,
       ...options
-    }).then(res => response=res)
+    }).then(response => {
 
-    if (!response.ok) throw new Error(response.problem)
+      if (!response.ok) throw new Error(response.problem)
 
-    let result = new Map()
-    for (let page of response.data.pages) {
-      result.set(page.id,new WikidotPage(this,page));
-    }
-    return result
+      let result = new Map()
+      for (let page of response.data.pages) {
+        result.set(page.id,new WikidotPage(this,page));
+      }
+      return result
+    })
+    return res;
   }
 
   /**

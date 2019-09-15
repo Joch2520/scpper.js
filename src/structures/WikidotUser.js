@@ -62,7 +62,7 @@ class WikidotUser {
    * @param {SiteResolvable} site The site to check if the user is in
    * @returns {boolean}
    */
-  get memberOf(site) {
+  memberOf(site) {
     var resolvedSite = this._DataResolver.SiteResolver(site);
     return Boolean(this.branches.includes(resolvedSite));
   };
