@@ -1,8 +1,8 @@
 <h1 align="center">
   Scpper2.js
   <h4 align="center">NodeJS API wrapper for ScpperDB API</h4>
-  <br>
   <h5 align="center"> Based on HelloEdit's <a href="https://github.com/HelloEdit/scpper.js">Scpper.js</a> </h5>
+  <br>
 </h1>
 
 
