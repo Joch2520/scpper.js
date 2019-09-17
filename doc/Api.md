@@ -11,8 +11,6 @@ Available APIs:
 
 [Changes to response](#response)
 
-Any of the above can be used in async by adding `Async` after the method name: i.e. api.getPageAsync(), etc.
-
 For structures of the class objects that some methods would return, please see the [Structures Documentaion](Structures.md).
 
 <a id="get+stuff"></a>
@@ -135,8 +133,7 @@ Returns: a Map of [WikidotPage](Structures#wikidot+page) objects, mapped by thei
 
 ### Response
 
-Different from HelloEdit's version of scpper.js, what synced methods return are object-based, with custom defined classes.
-With async methods, a promise will be returned containing the object of the same response as its synced counterpart.
+Different from HelloEdit's version of scpper.js, in the promise returned by the methods are object-based, with custom defined classes.
 
 For structures, please refer to the [Structures Documentaion](Structures.md).
 
