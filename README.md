@@ -4,7 +4,7 @@
   <br>
 </h1>
 
-<h5> Based on HelloEdit's [scpper.js](https://github.com/HelloEdit/scpper.js)</h5>
+<h5> Based on HelloEdit's <a href="https://github.com/HelloEdit/scpper.js">Scpper.js</a> </h5>
 
 <p align="center">
   <a href='https://coveralls.io/github/HelloEdit/scpper.js?branch=master'><img src='https://coveralls.io/repos/github/HelloEdit/scpper.js/badge.svg?branch=master' alt='Coverage Status' /></a>
