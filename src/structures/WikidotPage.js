@@ -8,6 +8,7 @@ class WikidotPage {
   constructor(client, data) {
     this._client = client;
     this._DataResolver = new DataResolver(client);
+    this._getauthorstatus = 1;
 
     /**
      * The branch tag/site inital of the page
@@ -102,7 +103,7 @@ class WikidotPage {
     if (data) this.setup(data);
   }
 
-  setup(data) {
+  async setup(data) {
     /**
      * Represents the id of the page
      * @type {Number}
@@ -122,13 +123,17 @@ class WikidotPage {
 
 
     for (user of data.authors) {
-      var siteMember = this._client.getSiteMember(user.id, {site: this.site});
-
-      if (user.role === "Author") {
-        this.authors.set(user.id,siteMember)
-      } else if (user.role === "Translator") {
-        this.translators.set(user.id,siteMember)
-      }
+      await this._client.getSiteMember(user.id, {site: this.site}).then(
+        siteMember => {
+          if (user.role === "Author") {
+            this.authors.set(user.id,siteMember)
+          } else if (user.role === "Translator") {
+            this.translators.set(user.id,siteMember)
+          }
+          if (user === (data.authors.length-1)) {
+          }
+        }
+      );
     }
   }
 
