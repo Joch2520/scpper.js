@@ -28,7 +28,7 @@ class WikidotUser {
      * The username of the user
      * @type {string}
      */
-    this.username = data.username;
+    this.name = data.name;
 
     /**
      * The displayed name of the user, with space and special symbols etc.
@@ -52,7 +52,7 @@ class WikidotUser {
 
 
   patch(data) {
-    for (const prop of ['id', 'username', 'displayName']) {
+    for (const prop of ['id', 'name', 'displayName']) {
       if (typeof data[prop] !== 'undefined') this[prop] = data[prop];
     }
   };

@@ -14,7 +14,7 @@ Constructor: WikidotUser(client, data)
 | Property | Type | Default | Description |
 | ---- | ---- | ---- | ---- |
 | id | <code>Number</code> | / | The wikidot ID number of the user, also used by ScpperDB as identifier. |
-| username | <code>String</code> | / | The username of the user. |
+| name | <code>String</code> | / | The username of the user. |
 | displayedName | <code>String</code> | / | The displayed name of the user, with space and special symbols etc. |
 | deleted | <code>Boolean</code> | / | Whether the account is deleted or not. |
 | branches | <code>Array</code> of <code>String</code> | / | The branch tags the user is in. Called <code>activity</code> in original ScpperDB response. |
