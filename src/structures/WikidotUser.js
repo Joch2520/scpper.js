@@ -47,6 +47,12 @@ class WikidotUser {
      * @type {array<string>}
      */
     this.branches = Object.keys(data.activity);
+
+    /**
+     * The activity on which the branches the user is in
+     * @type {array<string>}
+     */
+    this.activity = data.activity;
   }
 
 
