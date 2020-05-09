@@ -1,5 +1,5 @@
-const SiteMember = require("./SiteMember");
-const DataResolver = require("./../DataResolver");
+import SiteMember from "./SiteMember";
+import DataResolver from "./../DataResolver";
 
 /**
  * Represents a Wikidot page stored on ScpperDB.
@@ -154,4 +154,4 @@ class WikidotPage {
   }
 };
 
-module.exports = WikidotPage
+export default WikidotPage

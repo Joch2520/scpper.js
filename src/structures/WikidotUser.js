@@ -1,4 +1,4 @@
-const DataResolver = require("./../DataResolver");
+import DataResolver from "./../DataResolver";
 
 /**
  * Represents a Wikidot user stored on ScpperDB.
@@ -74,4 +74,4 @@ class WikidotUser {
   };
 };
 
-module.exports = WikidotUser;
+export default WikidotUser;

@@ -105,4 +105,4 @@ class SCPDataResolver {
   }
 }
 
-module.exports = SCPDataResolver;
+export default SCPDataResolver;

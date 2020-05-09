@@ -1,4 +1,4 @@
-const WikidotUser = require('./WikidotUser');
+import WikidotUser from './WikidotUser';
 
 /**
  * Represents a member of an official SCP branch.
@@ -83,4 +83,4 @@ class SiteMember extends WikidotUser {
   }
 };
 
-module.exports = SiteMember;
+export default SiteMember;
