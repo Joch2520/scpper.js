@@ -25,7 +25,7 @@ export class Scpper {
    * Retrieve a page by id
    * @param id page id
    */
-  public async getPage(id: string, options: Options.getPage = {}) {
+  public async getPage(id: string, options: Options.getPage = {}): Promise<WikidotPage> {
     var response = await this.api.get<Api.PageItem>('page', {
       id,
       ...options
@@ -39,9 +39,8 @@ export class Scpper {
   /**
    * Retrieve a user by id
    * @param id user id
-   * @returns {WikidotUser}
    */
-  public async getUser(id: string, options: Options.getUser = {}) {
+  public async getUser(id: string, options: Options.getUser = {}): Promise<WikidotUser> {
     var response = await this.api.get<Api.UserItem>('user', {
       id,
       ...options
@@ -55,9 +54,8 @@ export class Scpper {
   /**
    * Retrieve a SiteMember by id
    * @param id user id
-   * @returns {SiteMember}
    */
-  public async getSiteMember(id: string, options: Options.getUser = {}) {
+  public async getSiteMember(id: string, options: Options.getUser = {}): Promise<SiteMember> {
     var response = await this.api.get<Api.UserItem>('user', {
       id,
       ...options
@@ -69,12 +67,12 @@ export class Scpper {
   }
 
   /**
-   * Retrieve up to limit pages from the specified
+   * Retrieve up to limit page from the specified
    * wiki with the name matching title
    * @param search search
    * @param options page search options
    */
-  public async findPages(search: string, options: Options.findPage = {}) {
+  public async findPages(search: string, options: Options.findPage = {}): Promise<Map<number, WikidotPage>> {
     var response = await this.api.get<Api.searchPage>('find-pages', {
       title: search,
       ...options
@@ -82,7 +80,11 @@ export class Scpper {
 
     if (!response.ok) throw new Error(response.problem)
 
-    return response
+    let result = new Map()
+    for (let page of response.data.pages) {
+      result.set(page.id, new WikidotPage(this,page));
+    }
+    return result
   }
 
   /**
@@ -90,9 +92,8 @@ export class Scpper {
    * the name matching name
    * @param search search
    * @param options user search options
-   * @returns {Map<string, WikidotUser>}
    */
-  public async findUsers(search: string, options: Options.findUser = {}) {
+  public async findUsers(search: string, options: Options.findUser = {}): Promise<Map<number, WikidotUser>> {
     var response = await this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
@@ -101,7 +102,7 @@ export class Scpper {
     if (!response.ok) throw new Error(response.problem)
     let result = new Map()
     for (let user of response.data.users) {
-      result.set(user.id,new WikidotUser(this,user));
+      result.set(user.id, new WikidotUser(this,user));
     }
     return result
   }
@@ -113,7 +114,7 @@ export class Scpper {
    * @param options user search options
    * @returns {Map<string, SiteMember>}
    */
-  public async findSiteMembers(search: string, options: Options.findUser = {}) {
+  public async findSiteMembers(search: string, options: Options.findUser = {}): Promise<Map<number, SiteMember>> {
     var response = await this.api.get<Api.searchUser>('find-users', {
       name: search,
       ...options
@@ -132,7 +133,7 @@ export class Scpper {
    * @param tag list of tags, each prefixed with "+" or "-", separated by commas
    * @param options tag search options
    */
-  public async findTag(tag: string | string[], options: Options.findTag = {}) {
+  public async findTag(tag: string | string[], options: Options.findTag = {}): Promise<Map<number, WikidotPage>> {
     const search = Array.isArray(tag) ? tag.join(',') : tag
 
     var response = await this.api.get<Api.searchTag>('tags', {
@@ -144,7 +145,7 @@ export class Scpper {
 
     let result = new Map()
     for (let page of response.data.pages) {
-      result.set(page.id,new WikidotPage(this,page));
+      result.set(page.id, new WikidotPage(this,page));
     }
     return result
   }
