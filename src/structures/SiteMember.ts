@@ -49,7 +49,7 @@ export default class SiteMember extends WikidotUser implements SiteResolvable {
      */
     public totalRating: number;
 
-    constructor(client: Scpper, site: SiteResolvable, data: object) {
+    constructor(client: Scpper, site: SiteResolvable | string, data: object) {
         super(client, data);
 
         this.site = this.resolver.resolveSite(site);

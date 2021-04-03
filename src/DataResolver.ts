@@ -79,8 +79,8 @@ export default class SCPDataResolver {
                 return user as string || undefined;
             case WikidotPage:
                 let wp = user as WikidotPage;
-                if (wp.authors.size) return wp.authors.values().next().value;
-                else if (wp.translators.size) return wp.translators.values().next().value;
+                if (wp.authors.size) return wp.authors.values().next().value.id.toString();
+                else if (wp.translators.size) return wp.translators.values().next().value.id.toString();
             default:
                 return undefined;
         }
