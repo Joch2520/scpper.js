@@ -47,7 +47,13 @@ class SCPDataResolver {
   resolveUser(user) {
     if (user instanceof WikidotUser||user instanceof SiteMember) return user;
     if (typeof user === 'string') return this.client.getUser(user) || null;
-    if (user instanceof WikidotPage) return user.creator;
+    if (user instanceof WikidotPage) {
+      if (user.authors.size) {
+        return user.authors.values().next().value;
+      } else if (user.translators.size) {
+        return user.translators.values().next().value;
+      };
+    };
     return null;
   }
 
@@ -59,9 +65,17 @@ class SCPDataResolver {
   resolveUserID(user) {
     if (user instanceof WikidotUser || user instanceof SiteMember) return user.id;
     if (typeof user === 'string') return user || null;
-    if (user instanceof WikidotPage) return user.creator.id;
+    if (user instanceof WikidotPage) {
+      if (user.authors.size) {
+        return user.authors.values().next().value.id;
+      } else if (user.translators.size) {
+        return user.translators.values().next().value.id;
+      };
+    };
     return null;
-  }/**
+  }
+  
+  /**
    * Data that resolves to give a Site object. This can be:
    * * A SiteMember object
    * * A WikidotPage object
@@ -99,9 +113,9 @@ class SCPDataResolver {
   resolveSiteMember(site, user) {
     if (user instanceof SiteMember) return user;
     site = this.resolveSite(site);
-    user = this.resolveUser(user);
+    user = this.resolveUserID(user);
     if (!site || !user) return null;
-    return user.client.getSiteMember(user.id, {site:site}) || null;
+    return user.client.getSiteMember(user, {site:site}) || null;
   }
 }
 
