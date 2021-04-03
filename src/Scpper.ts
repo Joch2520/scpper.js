@@ -65,7 +65,7 @@ export class Scpper {
 
     if (!response.ok) throw new Error(response.problem)
 
-    return new SiteMember(this, this.site[options.site], response.data);
+    return new SiteMember(this, options.site, response.data);
   }
 
   /**
@@ -122,7 +122,7 @@ export class Scpper {
     if (!response.ok) throw new Error(response.problem)
     let result = new Map()
     for (let user of response.data.users) {
-      result.set(user.id, new SiteMember(this, this.site[options.site], user));
+      result.set(user.id, new SiteMember(this, options.site, user));
     }
     return result
   }
