@@ -61,6 +61,7 @@ List of available sites (API names in quotes) from [ScpperDB](https://github.com
 - [Chinese branch](scp-wiki-cn.wikidot.com): "cn"
 - [Italian branch](fondazionescp.wikidot.com): "it"
 - [International Archive](http://scp-int.wikidot.com): "int"
+- [Traditional Chinese branch](http://scp-zh-tr.wikidot.com): "zh"
 
 SCP Foundation and all related works were created by SCP creative community and are available under CC BY-SA 3.0 license.
 
