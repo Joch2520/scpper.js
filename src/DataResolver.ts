@@ -3,7 +3,7 @@ import {SiteMember, WikidotPage, WikidotUser} from "./structures";
 import {Api} from "./types";
 import SiteResolvable from "./structures/SiteResolvable";
 
-const branches = ['en', 'ru', 'ko', 'ja', 'fr', 'es', 'th', 'pl', 'de', 'cn', 'it', 'int'];
+const branches = ['en', 'ru', 'ko', 'ja', 'fr', 'es', 'th', 'pl', 'de', 'cn', 'it', 'int', 'zh'];
 const branchUrls = {
     "http://scp-wiki.net": "en",
     "http://www.scp-wiki.net": "en",
@@ -23,7 +23,8 @@ const branchUrls = {
     "http://scp-wiki-de.wikidot.com": "de",
     "http://scp-wiki-cn.wikidot.com": "cn",
     "http://fondazionescp.wikidot.com": "it",
-    "http://scp-int.wikidot.com": "int"
+    "http://scp-int.wikidot.com": "int",
+    "http://scp-zh-tr.wikidot.com": "zh"
 }
 
 export default class SCPDataResolver {
