@@ -3,8 +3,8 @@
   "version": "4.1.1",
   "description": "NodeJS API wrapper for ScpperDB API, based on HelloEdit's scpper.js",
   "author": {
-    "name": "Joch2520",
-    "url": "https://github.com/Joch2520/"
+    "name": "Zokhoi",
+    "url": "https://github.com/Zokhoi/"
   },
   "scripts": {
     "lint": "prettier ./**/*.{js,ts,json,md} -l",
@@ -43,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Joch2520/scpper2.js.git"
+    "url": "https://github.com/Zokhoi/scpper2.js.git"
   }
 }
