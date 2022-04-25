@@ -26,12 +26,13 @@ export class Scpper {
    * @param id page id
    */
   public async getPage(id: string, options: Options.getPage = {}): Promise<WikidotPage> {
-    var response = await this.api.get<Api.PageItem>('page', {
+    var response = await this.api.get<Api.PageItem|Api.Error>('page', {
       id,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
 
     return new WikidotPage(this, response.data);
   }
@@ -41,12 +42,13 @@ export class Scpper {
    * @param id user id
    */
   public async getUser(id: string, options: Options.getUser = {}): Promise<WikidotUser> {
-    var response = await this.api.get<Api.UserItem>('user', {
+    var response = await this.api.get<Api.UserItem|Api.Error>('user', {
       id,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
 
     return new WikidotUser(this, response.data);
   }
@@ -56,12 +58,13 @@ export class Scpper {
    * @param id user id
    */
   public async getSiteMember(id: string, options: Options.getUser = {}): Promise<SiteMember> {
-    var response = await this.api.get<Api.UserItem>('user', {
+    var response = await this.api.get<Api.UserItem|Api.Error>('user', {
       id,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
 
     return new SiteMember(this, options.site, response.data);
   }
@@ -73,56 +76,61 @@ export class Scpper {
    * @param options page search options
    */
   public async findPages(search: string, options: Options.findPage = {}): Promise<Map<number, WikidotPage>> {
-    var response = await this.api.get<Api.searchPage>('find-pages', {
+    var response = await this.api.get<Api.searchPage|Api.Error>('find-pages', {
       title: search,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
 
     let result = new Map()
-    for (let page of response.data.pages) {
+    for (let page of (response.data as Api.searchPage).pages) {
       result.set(page.id, new WikidotPage(this,page));
     }
     return result
   }
 
   /**
-   * Retrieves up to limit users from the with part of
-   * the name matching name
+   * Retrieves up to limit users from the specified
+   * wiki with part of the name matching search string
    * @param search search
    * @param options user search options
    */
   public async findUsers(search: string, options: Options.findUser = {}): Promise<Map<number, WikidotUser>> {
-    var response = await this.api.get<Api.searchUser>('find-users', {
+    var response = await this.api.get<Api.searchUser|Api.Error>('find-users', {
       name: search,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
+
     let result = new Map()
-    for (let user of response.data.users) {
+    for (let user of (response.data as Api.searchUser).users) {
       result.set(user.id, new WikidotUser(this,user));
     }
     return result
   }
 
   /**
-   * Retrieves up to limit SiteMembers from the with part of
-   * the name matching name
+   * Retrieves up to limit users from the specified
+   * wiki with part of the name matching search string
    * @param search search
    * @param options user search options
    * @returns {Map<string, SiteMember>}
    */
   public async findSiteMembers(search: string, options: Options.findUser = {}): Promise<Map<number, SiteMember>> {
-    var response = await this.api.get<Api.searchUser>('find-users', {
+    var response = await this.api.get<Api.searchUser|Api.Error>('find-users', {
       name: search,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
+
     let result = new Map()
-    for (let user of response.data.users) {
+    for (let user of (response.data as Api.searchUser).users) {
       result.set(user.id, new SiteMember(this, options.site, user));
     }
     return result
@@ -136,15 +144,16 @@ export class Scpper {
   public async findTag(tag: string | string[], options: Options.findTag = {}): Promise<Map<number, WikidotPage>> {
     const search = Array.isArray(tag) ? tag.join(',') : tag
 
-    var response = await this.api.get<Api.searchTag>('tags', {
+    var response = await this.api.get<Api.searchTag|Api.Error>('tags', {
       tags: search,
       ...options
     })
 
     if (!response.ok) throw new Error(response.problem)
+    if ((response.data as Api.Error).error!==undefined) throw new Error((response.data as Api.Error).error)
 
     let result = new Map()
-    for (let page of response.data.pages) {
+    for (let page of (response.data as Api.searchTag).pages) {
       result.set(page.id, new WikidotPage(this,page));
     }
     return result

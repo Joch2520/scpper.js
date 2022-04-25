@@ -103,4 +103,8 @@ export namespace Api {
     timezone_type: number
     timezone: string
   }
+
+  export interface Error {
+    error: string
+  }
 }
