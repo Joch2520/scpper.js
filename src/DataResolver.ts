@@ -3,29 +3,36 @@ import {SiteMember, WikidotPage, WikidotUser} from "./structures";
 import {Api} from "./types";
 import SiteResolvable from "./structures/SiteResolvable";
 
-const branches = ['en', 'ru', 'ko', 'ja', 'fr', 'es', 'th', 'pl', 'de', 'cn', 'it', 'int', 'zh'];
-const branchUrls = {
-    "http://scp-wiki.net": "en",
-    "http://www.scp-wiki.net": "en",
-    "http://scp-wiki.wikidot.com": "en",
-    "http://scpfoundation.ru": "ru",
-    "http://www.scpfoundation.ru": "ru",
-    "http://scp-ru.wikidot.com": "ru",
-    "http://ko.scp-wiki.net": "ko",
-    "http://scpko.wikidot.com": "ko",
-    "http://ja.scp-wiki.net": "ja",
-    "http://scp-jp.wikidot.com": "ja",
-    "http://fondationscp.wikidot.com": "fr",
-    "http://lafundacionscp.wikidot.com": "es",
-    "http://scp-th.wikidot.com": "th",
-    "http://scp-wiki.net.pl": "pl",
-    "http://scp-pl.wikidot.com": "pl",
-    "http://scp-wiki-de.wikidot.com": "de",
-    "http://scp-wiki-cn.wikidot.com": "cn",
-    "http://fondazionescp.wikidot.com": "it",
-    "http://scp-int.wikidot.com": "int",
-    "http://scp-zh-tr.wikidot.com": "zh"
-}
+const branches = Object.assign({
+    "scp-wiki.net": "en",
+    "www.scp-wiki.net": "en",
+    "scpwiki.com": "en",
+    "www.scpwiki.com": "en",
+    "scp-wiki.wikidot.com": "en",
+    "scpfoundation.ru": "ru",
+    "www.scpfoundation.ru": "ru",
+    "scp-ru.wikidot.com": "ru",
+    "ko.scp-wiki.net": "ko",
+    "scpko.wikidot.com": "ko",
+    "ja.scp-wiki.net": "ja",
+    "scp-jp.wikidot.com": "ja",
+    "fondationscp.wikidot.com": "fr",
+    "lafundacionscp.wikidot.com": "es",
+    "scp-th.wikidot.com": "th",
+    "scp-wiki.net.pl": "pl",
+    "scp-pl.wikidot.com": "pl",
+    "scp-wiki-de.wikidot.com": "de",
+    "scp-wiki-cn.wikidot.com": "cn",
+    "fondazionescp.wikidot.com": "it",
+    "scp-zh-tr.wikidot.com": "zh",
+    'scp-vn.wikidot.com': "vn",
+    "scp-int.wikidot.com": "int"
+},
+// Convert the enum into object
+...Object.keys(Api.SiteInitial).map(key=>{ return {[key]: Api.SiteInitial[key]} }),
+// Map site Wikidot names to their initials with dedupe
+...[...new Set(Object.values(Api.SiteInitial))].map(key=>{ return {[Api.SiteWikidotName[key]]: key} })
+);
 
 export class SCPDataResolver {
     public readonly client: Scpper;
@@ -71,7 +78,7 @@ export class SCPDataResolver {
      * @param {WikidotUser | string | SiteMember | WikidotPage} user The WikidotUserResolvable to identify
      * @returns {?string}
      */
-    public resolveUserID(user: WikidotUser | string | SiteMember| WikidotPage): string | undefined {
+    public resolveUserID(user: WikidotUser | string | SiteMember | WikidotPage): string | undefined {
         switch (user.constructor) {
             case WikidotUser || SiteMember:
                 return (user as WikidotUser).id.toString();
@@ -91,7 +98,7 @@ export class SCPDataResolver {
      * * A SiteMember object
      * * A WikidotPage object
      * * A site inital
-     * @typedef {SiteMember|WikidotPage|Scpper.site} SiteResolvable
+     * @typedef {SiteMember|WikidotPage|Api.site} SiteResolvable
      */
 
     private isSiteResolvable(obj: any): obj is SiteResolvable {
@@ -109,8 +116,8 @@ export class SCPDataResolver {
         switch (site.constructor) {
             case String:
                 let s = site as string;
-                if (branches.includes(s)) return s;
-                else if (branches.hasOwnProperty(s)) return branchUrls[s];
+                if (s.includes("://")) s=s.split("://")[1];
+                if (branches.hasOwnProperty(s)) return branches[s];
             default:
                 return undefined;
         }
@@ -126,7 +133,7 @@ export class SCPDataResolver {
     /**
      * Resolves a SiteMemberResolvable to a SiteMember object.
      * @param {SiteResolvable} site The Site that the member is part of
-     * @param {WikidotUser| string |SiteMember|WikidotPage} user The user that is part of the Site
+     * @param {WikidotUser | string | SiteMember | WikidotPage} user The user that is part of the Site
      * @returns {?SiteMember}
      */
     public async resolveSiteMember(site: SiteMember | WikidotPage | Api.SiteInitial, user: WikidotUser | string | SiteMember): Promise<SiteMember | undefined> {

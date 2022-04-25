@@ -28,21 +28,39 @@ export namespace Api {
   }
 
   export enum SiteUrl {
-    en = 'http://scp-wiki.net',
-    ru = 'http://scpfoundation.ru',
-    ko = 'http://ko.scp-wiki.net',
-    ja = 'http://ja.scp-wiki.net',
-    jp = 'http://ja.scp-wiki.net',
-    fr = 'http://fondationscp.wikidot.com',
-    es = 'http://lafundacionscp.wikidot.com',
-    th = 'http://scp-th.wikidot.com',
-    pl = 'http://scp-wiki.net.pl',
-    de = 'http://scp-wiki-de.wikidot.com',
-    cn = 'http://scp-wiki-cn.wikidot.com',
-    it = 'http://fondazionescp.wikidot.com',
-    zh = 'http://scp-zh-tr.wikidot.com',
-    vn = 'http://scp-vn.wikidot.com',
-    int = 'http://scp-int.wikidot.com'
+    en = 'scpwiki.com',
+    ru = 'scpfoundation.ru',
+    ko = 'ko.scp-wiki.net',
+    ja = 'ja.scp-wiki.net',
+    jp = 'ja.scp-wiki.net',
+    fr = 'fondationscp.wikidot.com',
+    es = 'lafundacionscp.wikidot.com',
+    th = 'scp-th.wikidot.com',
+    pl = 'scp-wiki.net.pl',
+    de = 'scp-wiki-de.wikidot.com',
+    cn = 'scp-wiki-cn.wikidot.com',
+    it = 'fondazionescp.wikidot.com',
+    zh = 'scp-zh-tr.wikidot.com',
+    vn = 'scp-vn.wikidot.com',
+    int = 'scp-int.wikidot.com'
+  }
+
+  export enum SiteWikidotName {
+    en = 'scp-wiki',
+    ru = 'scp-ru',
+    ko = 'scp-ko',
+    ja = 'scp-jp',
+    jp = 'scp-jp',
+    fr = 'fondationscp',
+    es = 'lafundacionscp',
+    th = 'scp-th',
+    pl = 'scp-pl',
+    de = 'scp-wiki-de',
+    cn = 'scp-wiki-cn',
+    it = 'fondazionescp',
+    zh = 'scp-zh-tr',
+    vn = 'scp-vn',
+    int = 'scp-int'
   }
 
   export type searchPage = {
