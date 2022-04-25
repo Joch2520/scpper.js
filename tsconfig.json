@@ -4,7 +4,13 @@
     "target": "es6",
     "allowJs": true,
     "outDir": "dist/",
+    "rootDir": "src/",
+    "declaration": true,
     "esModuleInterop": true
   },
-  "exclude": ["./test"]
+  "exclude": [
+    "./test",
+    "./dist",
+    "./ava.config.js"
+  ]
 }
