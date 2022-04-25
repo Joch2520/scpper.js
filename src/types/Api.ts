@@ -22,8 +22,9 @@ export namespace Api {
     de = 'de',
     cn = 'cn',
     it = 'it',
-    int = 'int',
-    zh = 'zh'
+    zh = 'zh',
+    vn = 'vn',
+    int = 'int'
   }
 
   export enum SiteUrl {
@@ -39,8 +40,9 @@ export namespace Api {
     de = 'http://scp-wiki-de.wikidot.com',
     cn = 'http://scp-wiki-cn.wikidot.com',
     it = 'http://fondazionescp.wikidot.com',
-    int = 'http://scp-int.wikidot.com',
-    zh = 'http://scp-zh-tr.wikidot.com'
+    zh = 'http://scp-zh-tr.wikidot.com',
+    vn = 'http://scp-vn.wikidot.com',
+    int = 'http://scp-int.wikidot.com'
   }
 
   export type searchPage = {
