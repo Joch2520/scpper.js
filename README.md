@@ -49,7 +49,7 @@ api.getUser('966960')
 
 List of available sites (API names in quotes) from [ScpperDB](https://github.com/FiftyNine/ScpperDB#list-of-available-sites-api-names-in-quotes):
 
-- [SCP Foundation](scp-wiki.net): "en"
+- [SCP Foundation](scpwiki.com): "en"
 - [Russian branch](scpfoundation.ru): "ru"
 - [Korean branch](ko.scp-wiki.net): "ko"
 - [Japanese branch](ja.scp-wiki.net): "ja"
@@ -60,8 +60,9 @@ List of available sites (API names in quotes) from [ScpperDB](https://github.com
 - [German branch](scp-wiki-de.wikidot.com): "de"
 - [Chinese branch](scp-wiki-cn.wikidot.com): "cn"
 - [Italian branch](fondazionescp.wikidot.com): "it"
-- [International Archive](http://scp-int.wikidot.com): "int"
-- [Traditional Chinese branch](http://scp-zh-tr.wikidot.com): "zh"
+- [Traditional Chinese branch](scp-zh-tr.wikidot.com): "zh"
+- [Vietnamese branch](scp-vn.wikidot.com): "vn"
+- [International Archive](scp-int.wikidot.com): "int"
 
 SCP Foundation and all related works were created by SCP creative community and are available under CC BY-SA 3.0 license.
 
