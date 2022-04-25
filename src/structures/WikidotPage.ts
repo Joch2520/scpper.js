@@ -4,7 +4,7 @@ import DataResolver from "../DataResolver";
 import SiteMember from "./SiteMember";
 import {Api} from "../types";
 
-export default class WikidotPage implements SiteResolvable {
+export class WikidotPage implements SiteResolvable {
     /**
      * The client that instantiated this WikidotUser
      * @name WikidotUser#client
@@ -146,3 +146,5 @@ export default class WikidotPage implements SiteResolvable {
         return new Date(this.created)
     }
 }
+
+export default WikidotPage;

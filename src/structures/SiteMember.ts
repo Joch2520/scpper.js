@@ -1,5 +1,5 @@
-import WikidotUser from "./WikidotUser";
-import SiteResolvable from "./SiteResolvable";
+import {WikidotUser} from "./WikidotUser";
+import {SiteResolvable} from "./SiteResolvable";
 import {Scpper} from "../Scpper";
 
 /**
@@ -80,3 +80,5 @@ export default class SiteMember extends WikidotUser implements SiteResolvable {
         return this.pages;
     }
 }
+
+export {SiteMember};

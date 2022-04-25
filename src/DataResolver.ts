@@ -27,7 +27,7 @@ const branchUrls = {
     "http://scp-zh-tr.wikidot.com": "zh"
 }
 
-export default class SCPDataResolver {
+export class SCPDataResolver {
     public readonly client: Scpper;
 
     /**
@@ -137,3 +137,5 @@ export default class SCPDataResolver {
         return await u.client.getSiteMember(u.id.toString(), {site: Api.SiteInitial[s]}) || undefined;
     }
 }
+
+export default SCPDataResolver;

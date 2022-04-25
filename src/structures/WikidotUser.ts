@@ -5,7 +5,7 @@ import SiteResolvable from "./SiteResolvable";
 /**
  * Represents a Wikidot user stored on ScpperDB.
  */
-export default class WikidotUser {
+export class WikidotUser {
     /**
      * The client that instantiated this WikidotUser
      * @name WikidotUser#client
@@ -89,3 +89,5 @@ export default class WikidotUser {
         return this.branches.includes(resolvable.site);
     }
 }
+
+export default WikidotUser;
